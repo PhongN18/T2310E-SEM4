@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Sản Phẩm</title>
+</head>
+<body>
+<h1>Thêm sản phẩm</h1>
+<form action="add-product" method="post">
+    <input type="hidden" name="sessionId" value="${param.sessionId}">
+    <label>Tên sản phẩm: </label>
+    <input type="text" name="productName">
+    <input type="submit" value="Thêm">
+</form>
+</body>
+</html>
