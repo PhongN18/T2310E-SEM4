@@ -1,0 +1,25 @@
+<div th:fragment="body-end">
+    <!-- Optional footer -->
+    <footer class="text-center text-muted small mt-5 mb-3">
+        <hr />
+        <p class="mb-0">&copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}"></span> Employee Manager</p>
+    </footer>
+</div>
+
+<!-- jQuery (optional, only needed for confirm + future scripts) -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Global Scripts -->
+<script>
+    // Simple delete confirmation
+    $(document).on('click', '[data-confirm-delete]', function(e) {
+        if (!confirm('⚠️ Are you sure you want to delete this employee?')) {
+            e.preventDefault();
+        }
+    });
+</script>
+</body>
+</html>

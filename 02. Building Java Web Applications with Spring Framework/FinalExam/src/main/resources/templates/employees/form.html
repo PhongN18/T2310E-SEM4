@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/_head :: head"></th:block>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0" th:text="${mode == 'create'} ? 'New Employee' : 'Edit Employee'"></h5>
+    </div>
+    <div class="card-body">
+        <!-- Form -->
+        <form th:action="${mode == 'create'} ? @{/employees} : @{/employees/{id}(id=${employee.id})}"
+              th:object="${employee}"
+              method="post" class="row g-3">
+
+            <!-- Hidden _method=put only for edit -->
+            <input th:if="${mode == 'edit'}" type="hidden" name="_method" value="put" />
+
+            <!-- First Name -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">First Name</label>
+                <input class="form-control" th:field="*{firstName}" placeholder="Enter first name" />
+                <div class="invalid-feedback d-block" th:errors="*{firstName}"></div>
+            </div>
+
+            <!-- Last Name -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Last Name</label>
+                <input class="form-control" th:field="*{lastName}" placeholder="Enter last name" />
+                <div class="invalid-feedback d-block" th:errors="*{lastName}"></div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Email</label>
+                <input class="form-control" th:field="*{email}" type="email" placeholder="example@email.com" />
+                <div class="invalid-feedback d-block" th:errors="*{email}"></div>
+            </div>
+
+            <!-- Position -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Position</label>
+                <input class="form-control" th:field="*{position}" placeholder="e.g. Developer" />
+                <div class="invalid-feedback d-block" th:errors="*{position}"></div>
+            </div>
+
+            <!-- Salary -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Salary</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input class="form-control" th:field="*{salary}" type="number" step="0.01" min="0" placeholder="0.00" />
+                </div>
+                <div class="invalid-feedback d-block" th:errors="*{salary}"></div>
+            </div>
+
+            <!-- Hire Date -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Hire Date</label>
+                <input class="form-control" th:field="*{hireDate}" type="date" />
+                <div class="invalid-feedback d-block" th:errors="*{hireDate}"></div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="col-12 d-flex gap-2 mt-3">
+                <button class="btn btn-primary px-4" type="submit">
+                    <i class="bi" th:classappend="${mode == 'create'} ? 'bi-person-plus' : 'bi-save'"></i>
+                    <span th:text="${mode == 'create'} ? ' Create' : ' Save'"></span>
+                </button>
+                <a class="btn btn-outline-secondary px-4" th:href="@{/employees}">
+                    <i class="bi bi-arrow-left"></i> Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<th:block th:replace="fragments/_foot :: body-end"></th:block>
+</html>

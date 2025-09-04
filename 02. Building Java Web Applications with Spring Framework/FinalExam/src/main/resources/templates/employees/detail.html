@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/_head :: head"></th:block>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-info text-white">
+        <h5 class="mb-0">
+            <i class="bi bi-person-badge"></i> Employee Detail
+        </h5>
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-3">Name</dt>
+            <dd class="col-sm-9" th:text="|${employee.firstName} ${employee.lastName}|"></dd>
+
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">
+                <a th:href="'mailto:' + ${employee.email}" th:text="${employee.email}"></a>
+            </dd>
+
+            <dt class="col-sm-3">Position</dt>
+            <dd class="col-sm-9" th:text="${employee.position}"></dd>
+
+            <dt class="col-sm-3">Salary</dt>
+            <dd class="col-sm-9 fw-semibold text-success"
+                th:text="${#numbers.formatDecimal(employee.salary, 1, 'COMMA', 2, 'POINT')}"></dd>
+
+            <dt class="col-sm-3">Hire Date</dt>
+            <dd class="col-sm-9" th:text="${employee.hireDate}"></dd>
+        </dl>
+    </div>
+</div>
+
+<div class="d-flex gap-2">
+    <a class="btn btn-outline-secondary" th:href="@{/employees}">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+    <a class="btn btn-primary" th:href="@{|/employees/${employee.id}/edit|}">
+        <i class="bi bi-pencil-square"></i> Edit
+    </a>
+</div>
+
+<th:block th:replace="fragments/_foot :: body-end"></th:block>
+</html>
