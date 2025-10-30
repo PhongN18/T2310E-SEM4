@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["orders_app|lib/order.dart","web|lib/web.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":["convert","js_interop"],"hasMain":true}
